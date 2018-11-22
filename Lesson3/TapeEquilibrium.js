@@ -41,27 +41,22 @@
 	each element of array A is an integer within the range [−1,000..1,000].
  */
 
-(function () {
-	let A = [3,1,2,4,3];
-	test(A);
-})();
+ function solution(A) {
+     // write your code in JavaScript (Node.js 8.9.4)
+ 	let storege = 0;
+ 	let diffArray = [];
+ 	let totalSum = A.reduce((aa, bb) => { return aa + bb; });
 
-function test(A) {
+ 	for(let ii = 0; ii < A.length; ii++){
+ 		storege = storege + A[ii];
+ 		let bet = totalSum - storege;
 
-	let storege = 0;
-	let diffArray = [];
-	let totalSum = A.reduce((aa, bb) => { return aa + bb; });
+ 		if(bet === 0){
+ 			break;
+ 		}
 
-	for(let ii = 0; ii < A.length; ii++){
-		storege = storege + A[ii];
-		let bet = totalSum - storege;
+ 		diffArray.push(Math.abs(storege - bet));
+ 	}
 
-		if(bet === 0){
-			break;
-		}
-
-		diffArray.push(Math.abs(storege - bet));
-	}
-
-	return Math.min.apply(null, diffArray);
-}
+ 	return Math.min.apply(null, diffArray);
+ }

@@ -46,22 +46,37 @@
  */
 
 
-(function () {
-	let A = [9, 5, 7, 3, 2, 7, 3, 1, 10, 8];
-	console.log(test(A));
-})();
+ function solution(A) {
+    // write your code in JavaScript (Node.js 8.9.4)
+ 	let sortArray = A.sort((aa, bb) => {
+ 		return aa - bb;
+ 	});
 
-function test(A) {
+ 	if(sortArray[0] > 1){
+ 		return 0;
+ 	}
 
-	let sortArray = A.sort();
+ 	let uniq = [];
 
-	if(sortArray[0] > 1 || sortArray[sortArray.length - 1] > sortArray.length){
-		return 0;
-	}
+ 	for(let ii = 0; ii < sortArray.length; ii++){
+ 		if(uniq[uniq.length - 1] !== sortArray[ii]){
+ 			uniq.push(sortArray[ii]);
+ 		}
+ 	}
 
-	let ariNum = sortArray.length;
-	let totalSum = sortArray.reduce((aa, bb) => { return aa + bb; });
-	let ariSum = (1 + ariNum)/2 * ariNum;
+ 	if(uniq.length !== sortArray.length){
+ 		return 0;
+ 	}
 
-	return totalSum === ariSum ? 1 : 0;
-}
+ 	for(let ii = 0; ii < uniq.length; ii++){
+ 		if(uniq[ii] > uniq.length){
+ 			return 0;
+ 		}
+
+ 		if(uniq[ii] !== ii + 1){
+ 			return 0;
+ 		}
+ 	}
+
+ 	return 1;
+ }

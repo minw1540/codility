@@ -39,11 +39,25 @@
 	each element of array A is an integer that can have one of the following values: 0, 1.
  */
 
-(function () {
-	let A = [0,1,0,1,1];
-	console.log(test(A));
-})()
+ // you can write to stdout for debugging purposes, e.g.
+ // console.log('this is a debug message');
 
-function test(A) {
+ function solution(A) {
+    // write your code in JavaScript (Node.js 8.9.4)
+ 	let east = 0;
+ 	let cross = 0;
 
-}
+ 	for(let ii = 0; ii < A.length; ii++){
+ 		if(A[ii] === 0){
+ 			east++;
+ 		}else{
+ 			cross = cross + east;
+
+ 			if(cross > 1000000000){
+ 				return -1;
+ 			}
+ 		}
+ 	}
+
+ 	return cross;
+ }

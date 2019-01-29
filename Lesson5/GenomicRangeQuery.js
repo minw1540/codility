@@ -38,9 +38,9 @@
  */
 
 (function () {
-	let S = 'TC';
-	let P = [0,0,1];
-	let Q = [0,1,1];
+	let S = 'CAGCCTA';
+	let P = [2,5,0];
+	let Q = [4,5,6];
 
 	console.log(test(S,P,Q));
 })()
@@ -77,21 +77,42 @@ function test(S, P, Q) {
 	let stringNum = [];
 	let resultArray = [];
 
-	for(let ii = 0; ii < S.length; ii++){
-		stringNum.push(getStringNum(S[ii]));
+	// 1번
+	// for(let ii = 0; ii < S.length; ii++){
+	// 	stringNum.push(getStringNum(S[ii]));
+	// }
+	//
+	// for(let ii = 0; ii < P.length; ii++){
+	//
+	// 	if(P[ii] === Q[ii]){
+	// 		resultArray.push(stringNum[P[ii]]);
+	// 		continue;
+	// 	}
+	//
+	//
+	// 	let slice = stringNum.slice(P[ii], Q[ii] + 1);
+	// 	let min = Math.min.apply(null, slice);
+	// 	resultArray.push(min);
+	// }
+
+	//2번
+	for(let ii = 0; ii < P.length; ii++){
+		let text = S.substring(P[ii], Q[ii] + 1);
+		stringNum.push(text);
 	}
 
-	for(let ii = 0; ii < P.length; ii++){
+	for(let ii = 0; ii < stringNum.length; ii++){
 
-		if(P[ii] === Q[ii]){
-			resultArray.push(stringNum[P[ii]]);
-			continue;
+		resultArray[ii] = null;
+
+		for(let jj = 0; jj < stringNum[ii].length; jj++){
+
+			let strNum = getStringNum(stringNum[ii][jj]);
+
+			if(resultArray[ii] === null || strNum < resultArray[ii]){
+				resultArray[ii] = strNum;
+			}
 		}
-
-
-		let slice = stringNum.slice(P[ii], Q[ii] + 1);
-		let min = Math.min.apply(null, slice);
-		resultArray.push(min);
 	}
 
 	return resultArray;
